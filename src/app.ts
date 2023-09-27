@@ -33,7 +33,16 @@ app.get('/block', (req:any, res: any)  => {
   res.send('Blocking operation completed');
 });
 
+//* vamos a dar solucion al bloqueo
 
+function sleepNoBloquea(ms: any) {
+  return new Promise(resolve => setTimeout(resolve, ms))
+}
+
+app.get('/nobloque', async (req:any, res:any) => {
+  await sleepNoBloquea(10000);
+  res.send("No Bloquea la operacion");
+})
 
 app.listen(port, () => {
   console.log("Server is running on http://localhost:"+port);
